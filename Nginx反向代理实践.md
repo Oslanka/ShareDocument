@@ -187,7 +187,28 @@ location / {
 
 ### Nginx配置https支持
 
+1. 去申请https证书，某云有免费版
+
+   <img src="/Users/caining/Library/Application Support/typora-user-images/image-20210719082231549.png" alt="image-20210719082231549" style="zoom:50%;" />
+
+2. 设置证书绑定域名
+
+   ![image-20210719082415629](/Users/caining/Library/Application Support/typora-user-images/image-20210719082415629.png)
+
+3. 配置指纹信息
+
+<img src="/Users/caining/Library/Application Support/typora-user-images/image-20210719083439526.png" alt="image-20210719083439526" style="zoom:50%;" />
+
+1. 下载ssl 证书
+
+   <img src="/Users/caining/Library/Application Support/typora-user-images/image-20210719082546858.png" alt="image-20210719082546858" style="zoom:50%;" />
+
+4. Nginx部署下载的test.pem&test.key两个文件，到此我们绑定的域名https://demo.com，便反向代理到了http://demo.com
+
 ```bash
+ 
+ 
+ 
  ##
         # add cnn SSL Settings
         ##
