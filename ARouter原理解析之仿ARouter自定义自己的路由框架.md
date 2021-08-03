@@ -4,8 +4,6 @@
 
 ARouter是阿里开源的一款android路由框架，帮助 Android App 进行组件化改造的路由框架 —— 支持模块间的路由、通信、解耦；结合路由可以实现组件化。
 
-<img src="https://www.hualigs.cn/image/610395ec18352.jpg" alt="WX20210730-113027@2x" style="zoom:50%;" />
-
 ### ARouter接入指北
 
 [完整Arouter接入指南](https://github.com/alibaba/ARouter/blob/master/README_CN.md)，ARouter重度用户可以跳过，直接往后看
@@ -14,7 +12,6 @@ ARouter是阿里开源的一款android路由框架，帮助 Android App 进行�
 
 ```groovy
 apply plugin: 'com.alibaba.arouter'
-
 buildscript {
     repositories {
         mavenCentral()
@@ -176,7 +173,7 @@ ARouter.getInstance().build("/test/activity").navigation();
   </activity>
   ```
   
-  - 简单demo，github做简单静态界面服务器，并部署到https://oslanka.github.io/statichtml.github.io/，手机浏览器打开，并点击href实现html打通原生，按道理来说，所有未拦截的ARouter路径，均可被web浏览器跳转，如图：<img src="https://www.hualigs.cn/image/6103978d969d1.jpg" alt="WX20210730-141807@2x" style="zoom:50%;" />，html代码如下：
+  - 简单demo，github做简单静态界面服务器，并部署到https://oslanka.github.io/statichtml.github.io/，手机浏览器打开，并点击href实现html打通原生，按道理来说，所有未拦截的ARouter路径，均可被web浏览器跳转，html代码如下：
   
   ```html
   <html>
@@ -332,7 +329,7 @@ android {
 //ARouter$$Root$$loginplugin
 ```
 
-<img src="https://www.hualigs.cn/image/60fbcf1e3d1c5.jpg" alt="image-20210724163442843" style="zoom:50%;" />
+<img src="https://i0.hdslb.com/bfs/album/765554d9598082b0fc3d9a5e3f548429d5d7c884.png" alt="image-20210724163442843" style="zoom:50%;" />
 
 
 
@@ -528,15 +525,37 @@ public final class C$csettingC$csettingHelloWorld {
 
 - 参考`ARouter-init` 方法，写出我们`CRouter-init`
 
-<img src="https://www.hualigs.cn/image/610394704710e.jpg" alt="image-20210729165538859" style="zoom: 67%;" />
+```java
+ /**
+     * Init, it must be call before used router.
+     */
+    public static void init(Application application) {
+        if (!hasInit) {
+            CRouter.application=application;
+            hasInit=true;
+            try {
+                getFileNameByPackageName(application, ROUTE_ROOT_PAKCAGE);
+            } catch (PackageManager.NameNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+        }
+    }
+```
+
+
 
 - 利用反射获取到注解对应映射关系，并参考ARouter存入HashMap
 
-<img src="https://www.hualigs.cn/image/610394704a58f.jpg" alt="image-20210729172328967" style="zoom:67%;" />
+<img src="https://i0.hdslb.com/bfs/album/4af48c97ab1eae021bbdd4d649bcb240fb2875dd.png" alt="image-20210803144725376" style="zoom:50%;" />
 
 - 通过隐式启动Activity模拟跳转
 
-<img src="https://www.hualigs.cn/image/610394704cdb4.jpg" alt="image-20210729173011332" style="zoom:67%;" />
+<img src="https://i0.hdslb.com/bfs/album/22d52342870812840bbc0912d72214017add80d8.png" alt="image-20210803144844114" style="zoom:50%;" />
 
 - 到此我们模拟出简易版本的ARouter，完整自定义CRouter
 
