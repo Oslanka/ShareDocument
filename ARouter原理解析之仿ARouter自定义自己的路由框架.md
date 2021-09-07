@@ -272,7 +272,7 @@ ARouter.getInstance().build("/home/main").greenChannel().navigation();
 
 - ARouter.init 时，通过获取`/data/app/包名/base.apk`来筛选出ARouter生成的类，如下图。
 
-<img src="https://i0.hdslb.com/bfs/album/7aeb1191c49ec218a69ef4e754e9360f60b76628.png" alt="image-20210729163725845" style="zoom:50%;" />
+<img src="http://p0.qhimg.com/t01e3fdd3805e2b3fab.png" alt="image-20210729163725845" style="zoom:50%;" />
 
 - 对于Activity类型，跳转`ARouter.getInstance().build("/login/login").navigation();`，最终执行的是，如下：
 
@@ -306,7 +306,7 @@ ARouter.getInstance().build("/home/main").greenChannel().navigation();
 
 - 两个无关的module 如何跳转的呢？我们发现最终执行startActivity时，所用的context为Application，思路是这样的，子module启动另外无关子module时，将执行权，交还给主进程/主程序去处理
 
-<img src="https://i0.hdslb.com/bfs/album/9fdc0573e616fa0f1d993f5cf4ad9414bbbfa754.png" alt="image-20210724170943112" style="zoom:50%;" />
+<img src="http://p0.qhimg.com/t010c87b628324caf6a.png" alt="image-20210724170943112" style="zoom:50%;" />
 
 - 打开生成路由文档,AROUTER_GENERATE_DOC="enable",会生成arouter-map-of-xx.json和3个java文件
 
@@ -329,7 +329,7 @@ android {
 //ARouter$$Root$$loginplugin
 ```
 
-<img src="https://i0.hdslb.com/bfs/album/765554d9598082b0fc3d9a5e3f548429d5d7c884.png" alt="image-20210724163442843" style="zoom:50%;" />
+<img src="http://p0.qhimg.com/t01b23c3a080859aacf.png" alt="image-20210724163442843" style="zoom:50%;" />
 
 
 
@@ -342,7 +342,7 @@ android {
 
 - 以上三个文件是如何生成的呢？APT是Annotation Processing Tool的简称,即注解处理工具，apt是在编译期对代码中指定的注解进行解析，然后做一些其他处理（如通过javapoet生成新的Java文件）ARouter使用了两个库`auto-service` `javapoet`，来实现从注解到代码的注入，其中`auto-service`为注解处理器的库，`javapoet`为代码生成器
 
-<img src="https://i0.hdslb.com/bfs/album/2d5e030f79cbea5654dadcf822d277e7bf2b5b36.png" alt="javaPoet" style="zoom: 67%;" />
+<img src="http://p0.qhimg.com/t018a863da238854e7c.png" alt="javaPoet" style="zoom: 67%;" />
 
 ### 通过例子了解APT
 
@@ -551,11 +551,11 @@ public final class C$csettingC$csettingHelloWorld {
 
 - 利用反射获取到注解对应映射关系，并参考ARouter存入HashMap
 
-<img src="https://i0.hdslb.com/bfs/album/4af48c97ab1eae021bbdd4d649bcb240fb2875dd.png" alt="image-20210803144725376" style="zoom:50%;" />
+<img src="http://p0.qhimg.com/t013a6e24fc142f00b2.png" alt="image-20210803144725376" style="zoom:50%;" />
 
 - 通过隐式启动Activity模拟跳转
 
-<img src="https://i0.hdslb.com/bfs/album/22d52342870812840bbc0912d72214017add80d8.png" alt="image-20210803144844114" style="zoom:50%;" />
+<img src="http://p0.qhimg.com/t01a6e14e9ac47ec54b.png" alt="image-20210803144844114" style="zoom:50%;" />
 
 - 到此我们模拟出简易版本的ARouter，完整自定义CRouter
 
