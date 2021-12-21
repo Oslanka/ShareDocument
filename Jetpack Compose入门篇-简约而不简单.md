@@ -169,7 +169,7 @@ org.gradle.java.home=/Library/Java/JavaVirtualMachines/jdk-11.0.11.jdk/Contents/
 
   <img src="http://p0.qhimg.com/t011cecaa35ea292d96.png" alt="image-20210831162854191" style="zoom:50%;" />
 
-  <img src="/Users/caining/Library/Application Support/typora-user-images/image-20210831162914660.png" alt="image-20210831162914660" style="zoom:50%;" />
+  <img src="http://p0.qhimg.com/t01659e2ae180944774.png" alt="image-20210831162914660" style="zoom:50%;" />
 
 - **Text**：Compose 提供了基础的 `BasicText` 和 `BasicTextField`，它们是用于显示文字以及处理用户输入的主要函数。Compose 还提供了更高级的 `Text` 和 `TextField`
 
