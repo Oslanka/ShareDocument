@@ -1,4 +1,4 @@
-## 密码学之DH秘钥交换协议 (DHKE)
+## 密码学之DH秘钥交换协议
 
 ### DH秘钥交换协议简介
 
@@ -30,7 +30,7 @@ Diffie–Hellman Key Exchange 以下简称为 **（DHKE）DH秘钥交换协议**
 - **Alice** 和 **Bob** 分别选择他们自己保留的**秘密颜色**（例如 **red** 和 **sea green**）。
 - 最后 **Alice** 和 **Bob** 将他们的秘密颜色与他们共同共享的颜色混合在一起。 获得的混合颜色区域准备公开交换（在我们的例子中*橙色*和*浅天蓝色*）。
 
-![img](https://cryptobook.nakov.com/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2F-LhlOQMrG9bRiqWpegM0%2Fuploads%2Fgit-blob-442820e2e254826ff4df378598c6a742f5902649%2Fkey-exchange-by-color-mixing-part-1.png?alt=media)
+![img](http://p0.qhimg.com/t01c9f374d5336ae4d5.png)
 
 得到MIxed colors 之后的后续步骤如下：
 
@@ -40,7 +40,7 @@ Diffie–Hellman Key Exchange 以下简称为 **（DHKE）DH秘钥交换协议**
   - 结果是**最终颜色混合**（*黄棕色*），与合作伙伴的颜色混合相同。
   - 这个最终混色就是 安全交换的**共享密钥**  shared key。
 
-![img](https://cryptobook.nakov.com/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2F-LhlOQMrG9bRiqWpegM0%2Fuploads%2Fgit-blob-95440cfb2585ce7bb17c377d512cd50c50c5eeb1%2Fkey-exchange-by-color-mixing-part-2.png?alt=media)
+![img](http://p0.qhimg.com/t01b501b741ac438ff4.png)
 
 如果第三方拦截了颜色交换过程，那么他们在计算上很难确定秘密颜色。
 
@@ -68,44 +68,32 @@ Diffie–Hellman Key Exchange 以下简称为 **（DHKE）DH秘钥交换协议**
 
 **DHKE** 基于 [**（模幂运算）modular exponentiations**](https://en.wikipedia.org/wiki/Modular_exponentiation) 的一个简单属性：
 
-(**ga**)**b** mod **p** = (**gb**)**a** mod **p**
+- (**ga**)**b** mod **p** = (**gb**)**a** mod **p**
 
-其中 **g**、**a**、**b** 和 **p** 是正整数。
+- 其中 **g**、**a**、**b** 和 **p** 是正整数。
 
-如果我们有 **A** = **ga** mod **p** 和 **B** = **gb** mod **p**，我们可以计算 **gab** mod ** p**，不显示 **a** 或 **b**（称为 **秘密指数**）。
+- 如果我们有 **A** = **ga** mod **p** 和 **B** = **gb** mod **p**，我们可以计算 **gab** mod ** p**，不显示 **a** 或 **b**（称为 **秘密指数**）。
 
-在计算理论中，这些都不是可以找到秘密指数的有效算法。 如果我们有以下等式中的 **m**、**g** 和 **p**：
+- 在计算理论中，这些都不是可以找到秘密指数的有效算法。 如果我们有以下等式中的 **m**、**g** 和 **p**：
 
-**m** = **gs** mod **p**
+- **m** = **gs** mod **p**
 
-没有找到秘密指数 **s** 的有效（快速）算法。 这被称为 [离散对数问题 (DLP)](https://en.wikipedia.org/wiki/Discrete_Logarithm_Problem_(DLP))。
+- 没有找到秘密指数 **s** 的有效（快速）算法。 这被称为 [离散对数问题 (DLP)](https://en.wikipedia.org/wiki/Discrete_Logarithm_Problem_(DLP))。
 
 ## 离散对数问题 Discrete Logarithm Problem (DLP)
 
-#### 对数
-
-$$
-log𝑏(𝑎)
-$$
-
 计算机科学中的**离散对数问题 (DLP)** 定义如下：
 
-- 通过给定元素 ***b*** 和值 ***a*** = ***bx*** 找到指数 ***x***（如果存在）
-
-- 指数***x\***称为[**离散对数**](https://en.wikipedia.org/wiki/Discrete_logarithm)，即**x** = *log***b* *（**一个**）。 元素 ***a\*** 和 ***b\*** 可以是模 ***p\*** 的简单整数（来自 [group ℤ/pℤ](https://en.wikipedia. org/wiki/Multiplicative_group_of_integers_modulo_n)) 或 [有限循环乘法群 **G**](https://en.wikipedia.org/wiki/Cyclic_group) 的元素（模 ***p\***），其中 * **p\*** 通常是质数。
-
 - 在密码学中，许多算法依赖于 **DLP 问题的计算难度**在精心挑选的组上，**不存在有效的算法**。
-
 - 离散对数问题是指从已知的A, g, p，很难求得a，这里的计算很难的关键是p是个很大的素数，比如1024-bit, 2048-bit, 3076-bit。
-- 扩展：ECC算法定义在域Fp (或者F2^m)：r=kq(mod p) ，从已知的r, q, p,很难求得k
 
 ## DHKE 协议
 
 现在，在我们熟悉了模幂的上述数学性质后，我们准备解释**DHKE协议**。 这是它的工作原理：
 
-![img](https://cryptobook.nakov.com/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2F-LhlOQMrG9bRiqWpegM0%2Fuploads%2Fgit-blob-c8916a2b821bcdef394dd92cd7240b017f12cd96%2Fdiffie-hellman-key-exchange-protocol.png?alt=media)
+![img](http://p0.qhimg.com/t01884310706da57b25.png)
 
-让我们解释一下这个密钥交换过程的每个步骤：
+让我们解释一下这个密钥交换过程的实例：
 
 - Alice 和 Bob 同意使用两个公共整数：**modulus p** 和 **base g**（其中 **p** 是 [(质数)prime](https://en.wikipedia.org/wiki/Prime_number)， **g** 是 [原始根模](https://en.wikipedia.org/wiki/Primitive_root_modulo_n) **p**)。
   - 例如，让 **p** = 23 和 **g** = 5。
@@ -119,7 +107,7 @@ $$
   - 在我们的例子中：**s** = 104 mod 23 = **18**
 - Bob 计算 s = Ab mod p
   - 在我们的例子中：**s** = 43 mod 23 = **18**
-- 爱丽丝和鲍勃现在共享一个**秘密号码 s**
+- Alice和Bob现在共享一个**秘密号码 s**
   - **s** = Ab mod p = Ba mod p = (ga)b mod p = (gb)a mod p = gab mod p = **18**
   - 共享密钥 **s** 无法从公开可用的数字 **A** 和 **B** 计算，因为无法有效计算秘密指数 **a** 和 **b**。
 
@@ -139,7 +127,7 @@ DHKE 通过不安全的公共（可嗅探）通道（例如通过电缆或通过
 
 As live example, you can play with this online DHKE tool: http://www.irongeek.com/diffie-hellman.php
 
-![img](https://cryptobook.nakov.com/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2F-LhlOQMrG9bRiqWpegM0%2Fuploads%2Fgit-blob-e4ceeb4e9af4361224d005c9df61a24324e5574c%2Fdiffie-hellman-online.png?alt=media)
+![img](http://p0.qhimg.com/t0138058f56b5ccde7d.png)
 
 ## ECDH - 基于椭圆曲线的 Diffie-Hellman 密钥交换协议
 
@@ -147,4 +135,14 @@ The [**Elliptic-Curve Diffie–Hellman (ECDH)**](https://en.wikipedia.org/wiki/E
 
 **ECDH** 是经典 **DHKE** 协议的变体，其中**模幂**计算被**椭圆曲线**计算取代，以提高安全性。 稍后我们将详细解释**椭圆曲线密码（ECC）**部分。
 
-https://cryptobook.nakov.com/key-exchange/diffie-hellman-key-exchange
+## 引用
+
+- [Hellman_key_exchange](https://en.wikipedia.org/wiki/Diffie–Hellman_key_exchange)
+
+- https://cryptobook.nakov.com
+
+- https://en.wikipedia.org/wiki/Man-in-the-middle_attack
+
+- [ECDH](https://en.wikipedia.org/wiki/Elliptic-curve_Diffie–Hellman)
+
+- DLP (离散对数问题 : https://en.wikipedia.org/wiki/Discrete_Logarithm_Problem_(DLP
